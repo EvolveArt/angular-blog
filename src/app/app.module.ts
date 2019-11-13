@@ -4,6 +4,7 @@ import { ReactiveFormsModule } from "@angular/forms";
 import { MatCardModule } from "@angular/material/card";
 import { MatButtonModule } from "@angular/material/button";
 import { MatIconModule } from "@angular/material/icon";
+import { MatToolbarModule } from "@angular/material/toolbar";
 
 import { AppRoutingModule } from "./app-routing.module";
 import { AppComponent } from "./app.component";
@@ -11,6 +12,13 @@ import { PostItemComponent } from "./post-item/post-item.component";
 import { PostListComponent } from "./post-list/post-list.component";
 import { NewPostComponent } from "./new-post/new-post.component";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
+
+const materialModules = [
+  MatToolbarModule,
+  MatCardModule,
+  MatButtonModule,
+  MatIconModule
+];
 
 @NgModule({
   declarations: [
@@ -24,9 +32,7 @@ import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
     AppRoutingModule,
     ReactiveFormsModule,
     BrowserAnimationsModule,
-    MatCardModule,
-    MatButtonModule,
-    MatIconModule
+    ...materialModules
   ],
   providers: [],
   bootstrap: [AppComponent]
