@@ -1,6 +1,6 @@
 import { Injectable } from "@angular/core";
 import { Post } from "../post";
-import { Subject } from "rxjs";
+import { Subject, Observable, of } from "rxjs";
 
 @Injectable({
   providedIn: "root"
@@ -15,14 +15,14 @@ export class PostService {
 
   constructor() {}
 
-  emitPostSubject() {
+  emitPostSubject(): void {
     this.postSubject.next(this.posts);
   }
 
   /**
-   * PUT: Add a new post to the posts' array
+   * POST: Add a new post to the posts' array
    */
-  addPost(title, content): Post {
+  addPost(title: string, content: string): Post {
     const postToAdd = new Post(title, content, 0);
     this.posts.push(postToAdd);
     this.emitPostSubject();
@@ -32,15 +32,22 @@ export class PostService {
   /**
    * DELETE: removes a post from the posts' array
    */
-  removePost(post): void {
-    this.posts.filter(p => p !== post);
+  removePost(post: Post): void {
+    this.posts = this.posts.filter(p => p !== post);
     this.emitPostSubject();
   }
 
   /**
-   * GET: get all the posts
+   * GET: get all the posts as a subject
    */
   getPosts(): Subject<Post[]> {
     return this.postSubject;
+  }
+
+  /**
+   * PUT: Updates the loveIts counter
+   */
+  updateLoveIts(post: Post): Observable<number> {
+    return of(post.loveIts);
   }
 }
