@@ -7,6 +7,7 @@ import { AppComponent } from "./app.component";
 import { PostItemComponent } from "./post-item/post-item.component";
 import { PostListComponent } from "./post-list/post-list.component";
 import { NewPostComponent } from "./new-post/new-post.component";
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
@@ -15,7 +16,7 @@ import { NewPostComponent } from "./new-post/new-post.component";
     PostListComponent,
     NewPostComponent
   ],
-  imports: [BrowserModule, AppRoutingModule, ReactiveFormsModule],
+  imports: [BrowserModule, AppRoutingModule, ReactiveFormsModule, BrowserAnimationsModule],
   providers: [],
   bootstrap: [AppComponent]
 })

@@ -5,6 +5,7 @@ export class Post {
   content: string;
   loveIts: number;
 
+  // tslint:disable-next-line: variable-name
   private readonly created_at: moment.Moment;
   private readonly dateFormat = "MM/DD/YYYY, HH:mm A";
 
