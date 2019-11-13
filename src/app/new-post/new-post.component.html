@@ -1,0 +1,15 @@
+<h1>New Post 📝</h1>
+
+<form [formGroup]="postForm" (ngSubmit)="onSubmit()">
+  <label for="title">
+    Title 💡
+    <input type="text" formControlName="title" />
+  </label>
+
+  <label for="content">
+    Content 📄
+    <input type="text" formControlName="content" />
+  </label>
+
+  <button type="submit" [disabled]="!postForm.valid">Submit 👏</button>
+</form>
