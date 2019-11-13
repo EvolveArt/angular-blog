@@ -23,7 +23,11 @@ export class PostItemComponent implements OnInit {
   }
 
   isLiked(): boolean {
-    return this.post.loveIts >= 0;
+    return this.post.loveIts > 0;
+  }
+
+  isDisliked(): boolean {
+    return this.post.loveIts < 0;
   }
 
   deletePost(): void {

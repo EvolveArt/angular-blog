@@ -22,7 +22,7 @@ export class PostService {
   /**
    * POST: Add a new post to the posts' array
    */
-  addPost(title: string, content: string): Post {
+  addPost({ title, content }): Post {
     const postToAdd = new Post(title, content, 0);
     this.posts.push(postToAdd);
     this.emitPostSubject();

@@ -1,2 +1,6 @@
-<h1>Posts</h1>
-<app-post-list></app-post-list>
+<h1>Blog App</h1>
+<nav>
+  <a [routerLink]="['/posts']" routerLinkActive="active">Posts</a>
+  <a [routerLink]="['/new']" routerLinkActive="active">New Post</a>
+</nav>
+<router-outlet></router-outlet>

@@ -8,7 +8,7 @@ export class Post {
   private readonly created_at: moment.Moment;
   private readonly dateFormat = "MM/DD/YYYY, HH:mm A";
 
-  constructor(title: string, content: string, loveIts: number) {
+  constructor(title: string, content: string, loveIts: number = 0) {
     this.title = title;
     this.content = content;
     this.loveIts = loveIts;

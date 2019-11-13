@@ -6,6 +6,9 @@ import {
   Validators
 } from "@angular/forms";
 import { post } from "selenium-webdriver/http";
+import { PostService } from "../services/post.service";
+import { Post } from "../post";
+import { Router } from "@angular/router";
 
 @Component({
   selector: "app-new-post",
@@ -18,15 +21,21 @@ export class NewPostComponent implements OnInit {
     content: ["", Validators.required]
   });
 
-  constructor(private fb: FormBuilder) {}
+  constructor(
+    private fb: FormBuilder,
+    private postService: PostService,
+    private router: Router
+  ) {}
 
   ngOnInit() {}
 
   onSubmit(): void {
+    const title = this.postForm.get("title").value;
+    const content = this.postForm.get("content").value;
     console.log(
-      `Form submitted with title: ${
-        this.postForm.get("title").value
-      } and content: ${this.postForm.get("content").value.slice(0, 10)}`
+      `Form submitted with title: ${title} and content: ${content.slice(0, 10)}`
     );
+    this.postService.addPost({ title, content });
+    this.router.navigate(["/posts"]);
   }
 }
