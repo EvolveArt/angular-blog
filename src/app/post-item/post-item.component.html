@@ -1,0 +1,11 @@
+<div class="card" [ngClass]="{ red: !isLiked(), green: isLiked() }">
+  <h1>{{ post.title }}</h1>
+  <h2>{{ post.creationDate }}</h2>
+  <p>{{ post.content }}</p>
+  <button (click)="like()">
+    ❤️ <span *ngIf="isLiked()">{{ post.loveIts }}</span>
+  </button>
+  <button (click)="dislike()">
+    👎🏼 <span *ngIf="!isLiked()">{{ -post.loveIts }}</span>
+  </button>
+</div>

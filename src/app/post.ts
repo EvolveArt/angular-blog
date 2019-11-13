@@ -1,6 +1,6 @@
 import * as moment from "moment";
 
-class Post {
+export class Post {
   title: string;
   content: string;
   loveIts: number;
