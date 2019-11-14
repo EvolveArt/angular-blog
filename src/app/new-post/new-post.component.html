@@ -1,15 +1,39 @@
-<h1>New Post 📝</h1>
+<mat-card class="card">
+  <mat-card-header>
+    <mat-card-title>Create a new post</mat-card-title>
+  </mat-card-header>
 
-<form [formGroup]="postForm" (ngSubmit)="onSubmit()">
-  <label for="title">
-    Title 💡
-    <input type="text" formControlName="title" />
-  </label>
-
-  <label for="content">
-    Content 📄
-    <input type="text" formControlName="content" />
-  </label>
-
-  <button type="submit" [disabled]="!postForm.valid">Submit 👏</button>
-</form>
+  <mat-card-content>
+    <form [formGroup]="postForm" (ngSubmit)="onSubmit()">
+      <mat-form-field class="full-width">
+        <mat-label>Title</mat-label>
+        <input
+          type="text"
+          formControlName="title"
+          matInput
+          placeholder="Give a title"
+        />
+      </mat-form-field>
+      <mat-form-field class="full-width" style="font-size: 2em;">
+        <mat-label>Content</mat-label>
+        <textarea
+          type="text"
+          formControlName="content"
+          matInput
+          placeholder="Share your thoughts"
+          style="height: 300px;"
+        ></textarea>
+      </mat-form-field>
+      <mat-card-actions>
+        <button
+          mat-icon-button
+          color="primary"
+          type="submit"
+          [disabled]="!postForm.valid"
+        >
+          <mat-icon>add_circle</mat-icon>
+        </button>
+      </mat-card-actions>
+    </form>
+  </mat-card-content>
+</mat-card>
