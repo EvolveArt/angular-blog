@@ -1,22 +1,10 @@
-import * as moment from "moment";
+import { Timestamp } from "@firebase/firestore-types";
 
-export class Post {
+export interface Post {
+  id?: string;
   title: string;
   content: string;
   loveIts: number;
-
   // tslint:disable-next-line: variable-name
-  private readonly created_at: moment.Moment;
-  private readonly dateFormat = "MM/DD/YYYY, HH:mm A";
-
-  constructor(title: string, content: string, loveIts: number = 0) {
-    this.title = title;
-    this.content = content;
-    this.loveIts = loveIts;
-    this.created_at = moment();
-  }
-
-  public get creationDate(): string {
-    return moment(this.created_at).format(this.dateFormat);
-  }
+  created_at: Timestamp;
 }

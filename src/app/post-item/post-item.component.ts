@@ -1,6 +1,7 @@
 import { Component, OnInit, Input } from "@angular/core";
 import { Post } from "../post";
-import { PostService } from "../services/post.service";
+import { FirebaseService } from "../services/firebase.service";
+import { post } from "selenium-webdriver/http";
 
 @Component({
   selector: "app-post-item",
@@ -9,17 +10,12 @@ import { PostService } from "../services/post.service";
 })
 export class PostItemComponent implements OnInit {
   @Input() post: Post;
+  id: string;
 
-  constructor(private postService: PostService) {}
+  constructor(private fb: FirebaseService) {}
 
-  ngOnInit() {}
-
-  like(): void {
-    this.post.loveIts++;
-  }
-
-  dislike(): void {
-    this.post.loveIts--;
+  ngOnInit() {
+    this.id = this.post.id;
   }
 
   isLiked(): boolean {
@@ -31,6 +27,14 @@ export class PostItemComponent implements OnInit {
   }
 
   deletePost(): void {
-    this.postService.removePost(this.post);
+    this.fb.removePost(this.id).then(_ => console.log("Post deleted."));
+  }
+
+  updateLikes(likes: number): void {
+    const newPost = { ...this.post };
+    newPost.loveIts += likes;
+    this.fb
+      .updatePost(this.id, newPost)
+      .then(_ => console.log("Updated post likes."));
   }
 }

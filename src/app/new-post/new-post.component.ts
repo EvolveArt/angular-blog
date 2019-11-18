@@ -6,9 +6,9 @@ import {
   Validators
 } from "@angular/forms";
 import { post } from "selenium-webdriver/http";
-import { PostService } from "../services/post.service";
 import { Post } from "../post";
 import { Router } from "@angular/router";
+import { FirebaseService } from "../services/firebase.service";
 
 @Component({
   selector: "app-new-post",
@@ -23,7 +23,7 @@ export class NewPostComponent implements OnInit {
 
   constructor(
     private fb: FormBuilder,
-    private postService: PostService,
+    private fbs: FirebaseService,
     private router: Router
   ) {}
 
@@ -32,10 +32,17 @@ export class NewPostComponent implements OnInit {
   onSubmit(): void {
     const title = this.postForm.get("title").value;
     const content = this.postForm.get("content").value;
-    console.log(
-      `Form submitted with title: ${title} and content: ${content.slice(0, 10)}`
-    );
-    this.postService.addPost({ title, content });
+
+    this.fbs
+      .addPost({ title, content })
+      .then(_ =>
+        console.log(
+          `Post created with title: ${title} and content: ${content.slice(
+            0,
+            10
+          )}`
+        )
+      );
     this.router.navigate(["/posts"]);
   }
 }

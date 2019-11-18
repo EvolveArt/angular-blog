@@ -1,6 +1,8 @@
 import { Component, OnInit, Input } from "@angular/core";
 import { Post } from "../post";
-import { PostService } from "../services/post.service";
+import { Observable, Subject } from "rxjs";
+import { FirebaseService } from "../services/firebase.service";
+import { AngularFirestoreCollection } from "@angular/fire/firestore";
 
 @Component({
   selector: "app-post-list",
@@ -8,16 +10,15 @@ import { PostService } from "../services/post.service";
   styleUrls: ["./post-list.component.scss"]
 })
 export class PostListComponent implements OnInit {
-  postsList: Post[];
+  postsList$: Observable<Post[]>;
 
-  constructor(private postService: PostService) {}
+  constructor(private fb: FirebaseService) {}
 
   ngOnInit() {
     this.getPosts();
   }
 
   getPosts(): void {
-    this.postService.getPosts().subscribe(posts => (this.postsList = posts));
-    this.postService.emitPostSubject();
+    this.postsList$ = this.fb.getPosts();
   }
 }

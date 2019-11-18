@@ -1,17 +1,20 @@
 <mat-card class="card">
   <mat-card-header>
     <mat-card-title>{{ post.title }}</mat-card-title>
-    <mat-card-subtitle>Posted at {{ post.creationDate }}</mat-card-subtitle>
+    <mat-card-subtitle
+      >Posted at
+      {{ post.created_at.seconds * 1000 | date: "short" }}</mat-card-subtitle
+    >
   </mat-card-header>
   <mat-card-content>
     <p>{{ post.content }}</p>
   </mat-card-content>
   <mat-card-actions>
-    <button mat-icon-button color="primary" (click)="like()">
+    <button mat-icon-button color="primary" (click)="updateLikes(+1)">
       <mat-icon>favorite</mat-icon>
       <span *ngIf="isLiked()"> {{ post.loveIts }}</span>
     </button>
-    <button mat-icon-button color="accent" (click)="dislike()">
+    <button mat-icon-button color="accent" (click)="updateLikes(-1)">
       <mat-icon>thumb_down_alt</mat-icon>
       <span *ngIf="isDisliked()"> {{ -post.loveIts }}</span>
     </button>
