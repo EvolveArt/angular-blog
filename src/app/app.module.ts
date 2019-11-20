@@ -26,6 +26,8 @@ import { VerifyEmailComponent } from "./verify-email/verify-email.component";
 import { AuthService } from "./services/auth.service";
 import { DashboardComponent } from "./dashboard/dashboard.component";
 
+import { NgxAuthFirebaseUIModule } from "ngx-auth-firebaseui";
+
 const materialModules = [
   MatToolbarModule,
   MatCardModule,
@@ -59,7 +61,8 @@ const firebaseModules = [
     ReactiveFormsModule,
     BrowserAnimationsModule,
     ...materialModules,
-    ...firebaseModules
+    ...firebaseModules,
+    NgxAuthFirebaseUIModule.forRoot(environment.firebase)
   ],
   providers: [AuthService],
   bootstrap: [AppComponent]

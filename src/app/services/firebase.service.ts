@@ -31,12 +31,17 @@ export class FirebaseService {
   /**
    * POST: Add a post to the database
    */
-  addPost({ title, content }): Promise<firebase.firestore.DocumentReference> {
+  addPost({
+    title,
+    content,
+    author
+  }): Promise<firebase.firestore.DocumentReference> {
     const postToAdd = {
       title,
       content,
       loveIts: 0,
-      created_at: firestore.Timestamp.fromDate(new Date())
+      created_at: firestore.Timestamp.fromDate(new Date()),
+      author
     };
     return this.postsCollection.add(postToAdd);
   }

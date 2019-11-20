@@ -7,11 +7,12 @@ import { RegisterComponent } from "./register/register.component";
 import { ForgotPasswordComponent } from "./forgot-password/forgot-password.component";
 import { VerifyEmailComponent } from "./verify-email/verify-email.component";
 import { DashboardComponent } from "./dashboard/dashboard.component";
+import { LoggedInGuard } from "ngx-auth-firebaseui";
 
 const routes: Routes = [
   { path: "", redirectTo: "/posts", pathMatch: "full" },
   { path: "posts", component: PostListComponent },
-  { path: "new", component: NewPostComponent },
+  { path: "new", component: NewPostComponent, canActivate: [LoggedInGuard] },
   { path: "login", component: LoginComponent },
   { path: "register", component: RegisterComponent },
   { path: "dashboard", component: DashboardComponent },

@@ -5,6 +5,11 @@
   <div>
     <a mat-button [routerLink]="['/posts']" routerLinkActive="active">Posts</a>
     <a mat-button [routerLink]="['/new']" routerLinkActive="active">New Post</a>
+    <a mat-button [routerLink]="['/login']" routerLinkActive="active">Login</a>
+    <a mat-button [routerLink]="['/register']" routerLinkActive="active"
+      >Register</a
+    >
+    <ngx-auth-firebaseui-avatar></ngx-auth-firebaseui-avatar>
   </div>
 </mat-toolbar>
 <router-outlet></router-outlet>

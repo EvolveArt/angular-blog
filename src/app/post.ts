@@ -1,4 +1,5 @@
 import { Timestamp } from "@firebase/firestore-types";
+import { User } from "./user";
 
 export interface Post {
   id?: string;
@@ -7,4 +8,5 @@ export interface Post {
   loveIts: number;
   // tslint:disable-next-line: variable-name
   created_at: Timestamp;
+  author: User;
 }
